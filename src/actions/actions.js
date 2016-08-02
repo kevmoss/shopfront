@@ -9,19 +9,17 @@ import * as types from './types';
 //   }
 // }
 
-actions.addItem = function (item, price) {
+actions.addItem = function (item) {
   return {
     type: types.ADD_ITEM,
-    item: item,
-    price: price
+    item: item
   };
 };
 
-actions.removeItem = function (item, quantity) {
+actions.removeItem = function (item) {
   return {
     type: types.REMOVE_ITEM,
-    item: item,
-    quantity: quantity
+    item: item
   };
 };
 
@@ -32,12 +30,9 @@ actions.emptyBasket = function () {
   };
 };
 
-actions.checkout = function (total, paymentMethod, address) {
+actions.checkout = function () {
   return {
-    type: types.CHECKOUT,
-    total: total,
-    paymentMethod: paymentMethod,
-    address: address
+    type: types.CHECKOUT
   };
 };
 

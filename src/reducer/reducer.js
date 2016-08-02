@@ -32,6 +32,11 @@ var appReducer = function (initialState, action) {
         basket: newBasket
       })
       break;
+    case types.EMPTY_BASKET:
+      newState = Object.assign({}, initialState, {
+        basket: []
+      })
+      break;
   }
 
   return newState;

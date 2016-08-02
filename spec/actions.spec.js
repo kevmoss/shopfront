@@ -7,16 +7,15 @@ describe('actions.addItem', function () {
     expect(actions.addItem).to.be.a('function');
   });
   it('takes an argument', function () {
-    expect(actions.addItem.length).to.equal(2);
+    expect(actions.addItem.length).to.equal(1);
   });
   it('returns an object', function () {
     expect(actions.addItem()).to.be.an('object');
   });
   it('returns expected', function () {
-    expect(actions.addItem('Glass', 2)).to.eql({
+    expect(actions.addItem('Glass')).to.eql({
       type: 'ADD_ITEM',
-      item: 'Glass',
-      price: 2
+      item: 'Glass'
     });
   });
 });
@@ -26,16 +25,15 @@ describe('actions.removeItem', function () {
     expect(actions.removeItem).to.be.a('function');
   });
   it('takes an argument', function () {
-    expect(actions.removeItem.length).to.equal(2);
+    expect(actions.removeItem.length).to.equal(1);
   });
   it('returns an object', function () {
     expect(actions.removeItem()).to.be.an('object');
   });
   it('returns expected', function () {
-    expect(actions.removeItem('Glass', 1)).to.eql({
+    expect(actions.removeItem('Glass')).to.eql({
       type: 'REMOVE_ITEM',
-      item: 'Glass',
-      quantity: 1
+      item: 'Glass'
     });
   });
 });
