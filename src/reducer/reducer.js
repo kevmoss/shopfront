@@ -14,7 +14,7 @@ var initialState = {
 }
 
 var appReducer = function (initialState, action) {
-  initialState = initialState || {basket: []}
+  initialState = initialState || {basket: []};
 
   var newState;
 
@@ -26,8 +26,13 @@ var appReducer = function (initialState, action) {
       break;
     case types.REMOVE_ITEM:
       var newBasket = initialState.basket.slice();
-      var itemIndex = newBasket.indexOf(action.item);
-      newBasket.splice(itemIndex, 1);
+      var itemIndex;
+      for(var i = 0; i < newBasket.length; i++) {
+        if(newBasket[i].name === action.item) {
+          itemIndex = newBasket.indexOf(action.item);
+          newBasket.splice(itemIndex, 1);
+        }
+      }
       newState = Object.assign({}, initialState, {
         basket: newBasket
       })

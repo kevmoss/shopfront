@@ -55,22 +55,22 @@ describe('actions.emptyBasket', function () {
   });
 });
 
-describe('actions.checkout', function () {
-  it('is a function', function () {
-    expect(actions.checkout).to.be.a('function');
-  });
-  it('take 3 arguments', function () {
-    expect(actions.checkout.length).to.equal(3);
-  });
-  it('returns an object', function () {
-    expect(actions.checkout()).to.be.an('object');
-  });
-  it('returns expected', function () {
-    expect(actions.checkout(200, 'Paypal', 'UK')).to.eql({
-      type: 'CHECKOUT',
-      total: 200,
-      paymentMethod: 'Paypal',
-      address: 'UK'
-    })
-  });
-});
+// describe('actions.checkout', function () {
+//   it('is a function', function () {
+//     expect(actions.checkout).to.be.a('function');
+//   });
+//   it('take 3 arguments', function () {
+//     expect(actions.checkout.length).to.equal(3);
+//   });
+//   it('returns an object', function () {
+//     expect(actions.checkout()).to.be.an('object');
+//   });
+//   it('returns expected', function () {
+//     expect(actions.checkout(200, 'Paypal', 'UK')).to.eql({
+//       type: 'CHECKOUT',
+//       total: 200,
+//       paymentMethod: 'Paypal',
+//       address: 'UK'
+//     })
+//   });
+// });

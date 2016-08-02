@@ -22,14 +22,24 @@ describe('appReducer', function () {
     })
   });
   it('handles REMOVE_ITEM correctly', function () {
-    var initialState = {basket: ['Coaster', 'Glass']};
-    var myAction = actions.removeItem('Glass');
+    var initialState = {basket: [{name: 'Glass', price: "£2", quantity: 2 }, {name: 'Coaster', price: "£2", quantity: 2 }]};
+
+    var myAction = actions.removeItem('Coaster');
     var newState = appReducer(initialState, myAction);
 
     expect(newState).to.eql({
-      basket: ['Coaster']
+      basket: [{name: 'Glass', price: "£2", quantity: 2 }]
     })
-  })
+  });
+  it('handles REMOVE_ITEM that\'s not there correctly', function () {
+    var initialState = {basket: [{name: 'Glass', price: "£2", quantity: 2 }, {name: 'Coaster', price: "£2", quantity: 2 }]};
+    var myAction = actions.removeItem('Straw');
+    var newState = appReducer(initialState, myAction);
+
+    expect(newState).to.eql({
+      basket: [{name: 'Glass', price: "£2", quantity: 2 }, {name: 'Coaster', price: "£2", quantity: 2 }]
+    })
+  });
   it('handles EMPTY_BASKET correctly', function () {
     var myAction = actions.emptyBasket();
     var newState = appReducer(null, myAction);
@@ -37,7 +47,5 @@ describe('appReducer', function () {
       basket: []
     });
   })
-  // it('handles CHECKOUT correctly', function () {
-  //
-  // })
+
 });
