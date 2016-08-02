@@ -71,7 +71,7 @@ describe('actions.checkout', function () {
     expect(actions.checkout(200, 'Paypal', 'UK')).to.eql({
       type: 'CHECKOUT',
       total: 200,
-      method: 'Paypal',
+      paymentMethod: 'Paypal',
       address: 'UK'
     })
   });

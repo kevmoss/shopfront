@@ -1,6 +1,7 @@
-const actions = {}
+const actions = {};
 
-// items = [{item: 'Glass', price: 2}];
+import * as types from './types';
+
 // items = {
 //   'Glass': {
 //     price: 2,
@@ -10,7 +11,7 @@ const actions = {}
 
 actions.addItem = function (item, price) {
   return {
-    type: 'ADD_ITEM',
+    type: types.ADD_ITEM,
     item: item,
     price: price
   };
@@ -18,7 +19,7 @@ actions.addItem = function (item, price) {
 
 actions.removeItem = function (item, quantity) {
   return {
-    type: 'REMOVE_ITEM',
+    type: types.REMOVE_ITEM,
     item: item,
     quantity: quantity
   };
@@ -27,18 +28,18 @@ actions.removeItem = function (item, quantity) {
 
 actions.emptyBasket = function () {
   return {
-    type: 'EMPTY_BASKET'
+    type: types.EMPTY_BASKET
   };
 };
 
-actions.checkout = function (total, method, address) {
+actions.checkout = function (total, paymentMethod, address) {
   return {
-    type: 'CHECKOUT',
+    type: types.CHECKOUT,
     total: total,
-    method: method,
+    paymentMethod: paymentMethod,
     address: address
   };
 };
 
 
-module.exports = actions;
+export default actions;
