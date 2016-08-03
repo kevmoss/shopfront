@@ -1,0 +1,14 @@
+html {
+  background: #fff;
+
+}
+
+.store-title {
+  text-align: center;
+  padding: 2em;
+}
+
+.list,
+.basket {
+  padding: 1em 2em;
+}

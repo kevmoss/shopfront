@@ -7,12 +7,6 @@ import * as types from '../actions/types';
 //   }
 // ]
 
-var initialState = {
-  basket: [
-
-  ]
-}
-
 var appReducer = function (initialState, action) {
   initialState = initialState || {basket: []};
 
@@ -42,9 +36,11 @@ var appReducer = function (initialState, action) {
         basket: []
       })
       break;
+    default:
+      return initialState;
   }
 
   return newState;
 }
 
-export default appReducer;
+module.exports = appReducer;

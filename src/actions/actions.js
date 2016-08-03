@@ -37,4 +37,4 @@ actions.checkout = function () {
 };
 
 
-export default actions;
+module.exports = actions;

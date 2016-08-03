@@ -55,6 +55,7 @@ describe('appReducer', function () {
     expect(newState).to.eql({
       basket: []
     });
-  })
+  });
+  
 
 });
