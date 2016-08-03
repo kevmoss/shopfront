@@ -36,5 +36,12 @@ actions.checkout = function () {
   };
 };
 
+actions.updateStock = function (item) {
+  return {
+    type: types.UPDATE_STOCK,
+    item: item
+  };
+};
+
 
 module.exports = actions;

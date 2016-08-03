@@ -1,37 +1,12 @@
 const React = require('react');
 const actions = require('../actions/actions');
 
-var items = [
-  {
-    name: "Glass",
-    price: "£2",
-    qty: 2
-  },
-  {
-    name: "Coasters",
-    price: "£2",
-    qty: 2
-  },
-  {
-    name: "Straws",
-    price: "£1",
-    qty: 5
-  },
-  {
-    name: "Cups",
-    price: "£2.50",
-    qty: 4
-  },
-  {
-    name: "Spoons",
-    price: "£1.50",
-    qty: 8
-  }
-];
+
 
 var List = React.createClass({
 
   render: function () {
+    var items = this.props.store.getState().items;
     var listNodes = items.map(function (item, index){
       return (
           <tr key={index}>
@@ -74,8 +49,15 @@ var List = React.createClass({
       qty: 1
     });
     this.props.store.dispatch(actions.addItem(newItem));
-  }
 
+    var quantity = item.qty - 1;
+    console.log(quantity);
+    var updatedItem = Object.assign({}, item, {
+      qty: quantity
+    });
+    this.props.store.dispatch(actions.updateStock(updatedItem));
+
+  }
 
 });
 

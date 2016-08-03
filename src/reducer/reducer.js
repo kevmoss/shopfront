@@ -7,8 +7,35 @@ import * as types from '../actions/types';
 //   }
 // ]
 
+
 var appReducer = function (initialState, action) {
-  initialState = initialState || {basket: []};
+  initialState = initialState || {basket: [], items: [
+    {
+      name: "Glass",
+      price: "£2",
+      qty: 2
+    },
+    {
+      name: "Coasters",
+      price: "£2",
+      qty: 2
+    },
+    {
+      name: "Straws",
+      price: "£1",
+      qty: 5
+    },
+    {
+      name: "Cups",
+      price: "£2.50",
+      qty: 4
+    },
+    {
+      name: "Spoons",
+      price: "£1.50",
+      qty: 8
+    }
+  ]};
 
   var newState;
 
@@ -34,6 +61,17 @@ var appReducer = function (initialState, action) {
     case types.EMPTY_BASKET:
       newState = Object.assign({}, initialState, {
         basket: []
+      })
+      break;
+    case types.UPDATE_STOCK:
+      var newItems = initialState.items.slice();
+      for(var i = 0; i < newItems.length; i++) {
+        if(newItems[i].name === action.item.name) {
+          newItems[i].qty = action.item.qty;
+        }
+      }
+      newState = Object.assign({}, initialState, {
+        items: newItems
       })
       break;
     default:
