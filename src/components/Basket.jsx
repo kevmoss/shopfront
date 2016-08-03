@@ -1,4 +1,5 @@
 const React = require('react');
+const actions = require('../actions/actions');
 
 var Basket = React.createClass({
   render: function () {
@@ -10,13 +11,13 @@ var Basket = React.createClass({
           <td>{item.price}</td>
           <td>{item.qty}</td>
           <td className="is-icon">
-            <button className="button is-danger is-outlined" href="#" >
+            <button onClick={this.handleRemoveItem.bind(this,item)} className="button is-danger is-outlined" href="#" >
               Remove Item
             </button>
           </td>
         </tr>
       );
-    });
+    }.bind(this));
     return (
       <div>
         <div className="level-item cart-title">
@@ -38,7 +39,12 @@ var Basket = React.createClass({
         </table>
       </div>
     );
-  }
+  },
+  handleRemoveItem: function (item) {
+      var removeItem = item;
+      this.props.store.dispatch(actions.removeItem(removeItem.name));
+    }
 });
+
 
 module.exports = Basket;
