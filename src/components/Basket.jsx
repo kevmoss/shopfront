@@ -37,13 +37,19 @@ var Basket = React.createClass({
             {itemNodes}
           </tbody>
         </table>
+        <button onClick={this.handleEmptyBasket} className="button is-danger " href="#" >
+          Empty Basket
+        </button>
       </div>
     );
   },
-  handleRemoveItem: function (item) {
+  handleRemoveItem: function (item, e) {
       var removeItem = item;
       this.props.store.dispatch(actions.removeItem(removeItem.name));
-    }
+  },
+  handleEmptyBasket: function () {
+    this.props.store.dispatch(actions.emptyBasket());
+  }
 });
 
 

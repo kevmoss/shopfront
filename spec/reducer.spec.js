@@ -49,6 +49,15 @@ describe('appReducer', function () {
       basket: []
     })
   });
+  it('removes just one item when there are duplicates', function () {
+    var initialState = {basket: [{name: 'Glass', price: "£2", quantity: 3 }, {name: 'Glass', price: "£2", quantity: 2 }, {name: 'Coaster', price: "£2", quantity: 2 }, {name: 'Glass', price: "£2", quantity: 2 }, {name: 'Glass', price: "£2", quantity: 2 }, {name: 'Glass', price: "£2", quantity: 2 }, {name: 'Glass', price: "£2", quantity: 1 }]};
+    var myAction = actions.removeItem('Glass');
+    var newState = appReducer(initialState, myAction);
+
+    expect(newState).to.eql({
+      basket: [{name: 'Coaster', price: "£2", quantity: 2 }]
+    })
+  });
   it('handles EMPTY_BASKET correctly', function () {
     var myAction = actions.emptyBasket();
     var newState = appReducer(null, myAction);
@@ -56,6 +65,6 @@ describe('appReducer', function () {
       basket: []
     });
   });
-  
+
 
 });
