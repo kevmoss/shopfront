@@ -3,6 +3,11 @@ html {
 
 }
 
+.app-title {
+  color: #666;
+  font-weight: bold;
+}
+
 .store-title {
   text-align: center;
   padding: 2em;
@@ -11,4 +16,25 @@ html {
 .list,
 .basket {
   padding: 1em 2em;
+}
+
+.button, .fa, .input, .textarea, table td, table th {
+  vertical-align: baseline;
+}
+
+/* BASKET */
+.cart-title,
+.list-title {
+  font-weight: bold;
+  margin-bottom: 2em;
+}
+
+.cart-title i,
+.list-title i {
+  font-size: 21px;
+  margin-left: .3em;
+}
+
+.basket-table {
+  margin-top: 0px;
 }
