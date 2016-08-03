@@ -1,21 +1,35 @@
-module.exports = {
-  entry: './src/index.js',
+const validate = require('webpack-validator');
+const path = require('path');
+const bundleFolder = path.join(__dirname, 'public', 'js');
+
+module.exports = validate({
+  entry: {
+    app: ['./src/index.js']
+  },
   output: {
     filename: 'bundle.js',
-    path: './public/',
-    publicPath: './public'
+    path: bundleFolder,
+    publicPath: '/js/'
   },
   resolve: {
-    extensions: ['', '.js']
+    extensions: ['', '.js', '.jsx']
   },
-  devtool: 'inline-source-map',
+  devtool: 'eval-source-map',
   module: {
     loaders: [
       {
         test: /\.jsx?$/,
         loader: 'babel-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
+        query: {
+          presets: [ 'es2015', 'react', 'react-hmre' ]
+        }
       }
     ]
+  },
+  devServer: {
+    hot: true,
+    inline: true,
+    stats: 'errors-only'
   }
-};
+});

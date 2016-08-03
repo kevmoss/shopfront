@@ -40,6 +40,15 @@ describe('appReducer', function () {
       basket: [{name: 'Glass', price: "£2", quantity: 2 }, {name: 'Coaster', price: "£2", quantity: 2 }]
     })
   });
+  it('handles REMOVE_ITEM when there\'s nothing there', function () {
+    var initialState = {basket: []};
+    var myAction = actions.removeItem('Straw');
+    var newState = appReducer(initialState, myAction);
+
+    expect(newState).to.eql({
+      basket: []
+    })
+  });
   it('handles EMPTY_BASKET correctly', function () {
     var myAction = actions.emptyBasket();
     var newState = appReducer(null, myAction);
