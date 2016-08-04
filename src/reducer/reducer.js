@@ -65,9 +65,10 @@ var appReducer = function (initialState, action) {
       break;
     case types.UPDATE_STOCK:
       var newItems = initialState.items.slice();
+      var subtractQuantity = action.item.qty - 1;
       for(var i = 0; i < newItems.length; i++) {
         if(newItems[i].name === action.item.name) {
-          newItems[i].qty = action.item.qty;
+          newItems[i].qty = subtractQuantity;
         }
       }
       newState = Object.assign({}, initialState, {

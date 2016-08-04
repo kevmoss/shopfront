@@ -12,11 +12,24 @@ var List = React.createClass({
           <tr key={index}>
             <td>{item.name}</td>
             <td>{item.price}</td>
-            <td>{item.qty}</td>
+            <td>
+              {
+              (item.qty > 0)
+              ? item.qty
+              : <span className="out-of-stock">Out of stock</span>
+              }
+            </td>
             <td className="is-icon">
-              <button className="button is-info is-outlined" href="#" onClick={this.handleAddItem.bind(this, item)}>
+              {
+              (item.qty > 0)
+              ? <button className="button is-info is-outlined" href="#" onClick={this.handleAddItem.bind(this, item)}>
                 Add Item
               </button>
+              : <button disabled className="button is-info is-outlined" href="#" onClick={this.handleAddItem.bind(this, item)}>
+              Add Item
+              </button>
+            }
+
             </td>
           </tr>
       )
@@ -50,12 +63,12 @@ var List = React.createClass({
     });
     this.props.store.dispatch(actions.addItem(newItem));
 
-    var quantity = item.qty - 1;
-    console.log(quantity);
-    var updatedItem = Object.assign({}, item, {
-      qty: quantity
-    });
-    this.props.store.dispatch(actions.updateStock(updatedItem));
+    // var quantity = item.qty - 1;
+    // console.log(quantity);
+    // var updatedItem = Object.assign({}, item, {
+    //   qty: quantity
+    // });
+    this.props.store.dispatch(actions.updateStock(item));
 
   }
 

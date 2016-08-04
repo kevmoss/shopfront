@@ -3,6 +3,20 @@ html {
 
 }
 
+.button.is-info.is-outlined:focus {
+  background: none;
+  color: #42afe3;
+}
+
+.button.is-danger.is-outlined:focus {
+  background: none;
+  color: #ed6c63;
+}
+
+.out-of-stock {
+  color: #ff0000;
+}
+
 .app-title {
   color: #666;
   font-weight: bold;
