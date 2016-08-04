@@ -53,9 +53,11 @@ var appReducer = function (initialState, action) {
       break;
     case types.REMOVE_ITEM:
       var newBasket = initialState.basket.slice();
+      var newList = initialState.items.slice();
       var itemIndex;
       var itemToRemove;
-        for(var i = 0; i < newBasket.length; i++) {
+      // Removing Item from Basket
+      for(var i = 0; i < newBasket.length; i++) {
         if(newBasket[i].name === action.item) {
           itemIndex = newBasket.indexOf(newBasket[i]);
           itemToRemove = newBasket[i];
@@ -64,15 +66,25 @@ var appReducer = function (initialState, action) {
       if(itemToRemove.qty > 1) {
         itemToRemove.qty -= 1;
         newState = Object.assign({}, initialState, {
-          basket: newBasket
+          basket: newBasket,
+          list: newList
         })
       }
       else {
         newBasket.splice(itemIndex, 1);
         newState = Object.assign({}, initialState, {
-          basket: newBasket
+          basket: newBasket,
+          list: newList
         })
       }
+
+      // Updating List based on Basket removed Item
+      for(var j = 0; j < newList.length; j++) {
+        if(newList[j].name === action.item)  {
+          newList[j].qty += 1;
+        }
+      }
+
       break;
     case types.EMPTY_BASKET:
       newState = Object.assign({}, initialState, {
