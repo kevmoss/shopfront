@@ -1,12 +1,6 @@
 import * as types from '../actions/types';
-//
-// basket = [
-//   {
-//     item: 'Glass',
-//     price: 1.50
-//   }
-// ]
 
+var _ = require('underscore');
 
 var appReducer = function (initialState, action) {
   initialState = initialState || {basket: [], items: [
@@ -41,9 +35,21 @@ var appReducer = function (initialState, action) {
 
   switch (action.type) {
     case types.ADD_ITEM:
-      newState = Object.assign({}, initialState, {
-        basket: initialState.basket.concat([action.item])
-      });
+      var newBasket = initialState.basket.slice();
+      var isInBasket = _.find(newBasket, function (item) {
+        return item.name === action.item.name
+      })
+      if(isInBasket) {
+        isInBasket.qty += 1;
+        newState = Object.assign({}, initialState, {
+          basket: newBasket
+        });
+      } else {
+        newState = Object.assign({}, initialState, {
+          basket: initialState.basket.concat([action.item])
+        });
+      }
+
       break;
     case types.REMOVE_ITEM:
       var newBasket = initialState.basket.slice();

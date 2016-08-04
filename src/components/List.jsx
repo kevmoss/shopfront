@@ -1,7 +1,7 @@
 const React = require('react');
 const actions = require('../actions/actions');
 
-
+var _ = require('underscore');
 
 var List = React.createClass({
 
@@ -63,11 +63,6 @@ var List = React.createClass({
     });
     this.props.store.dispatch(actions.addItem(newItem));
 
-    // var quantity = item.qty - 1;
-    // console.log(quantity);
-    // var updatedItem = Object.assign({}, item, {
-    //   qty: quantity
-    // });
     this.props.store.dispatch(actions.updateStock(item));
 
   }
