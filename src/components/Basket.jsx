@@ -8,7 +8,7 @@ var Basket = React.createClass({
       return (
         <tr key={index}>
           <td>{item.name}</td>
-          <td>{item.price}</td>
+          <td>£{(item.price / 100).toFixed(2) }</td>
           <td>{item.qty}</td>
           <td className="is-icon">
             <button onClick={this.handleRemoveItem.bind(this,item)} className="button is-danger is-outlined" href="#" >

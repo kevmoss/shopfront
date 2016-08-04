@@ -4,28 +4,28 @@ var _ = require('lodash');
 
 var beginningState = {basket: [], items: [
   {
-    name: "Glass",
-    price: "£2",
-    qty: 2
+    name: "iPhone 7",
+    price: 50000,
+    qty: 1
   },
   {
-    name: "Coasters",
-    price: "£2",
-    qty: 2
-  },
-  {
-    name: "Straws",
-    price: "£1",
+    name: "Samsung Galaxy",
+    price: 20000,
     qty: 5
   },
   {
-    name: "Cups",
-    price: "£2.50",
+    name: "Nokia 3210",
+    price: 4027,
+    qty: 8
+  },
+  {
+    name: "Blackberry",
+    price: 10000,
     qty: 4
   },
   {
-    name: "Spoons",
-    price: "£1.50",
+    name: "Fax Machine",
+    price: 3000,
     qty: 8
   }
 ]};

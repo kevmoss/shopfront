@@ -11,7 +11,7 @@ var List = React.createClass({
       return (
           <tr key={index}>
             <td>{item.name}</td>
-            <td>{item.price}</td>
+            <td>£{(item.price / 100).toFixed(2) }</td>
             <td>
               {
               (item.qty > 0)
