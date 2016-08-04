@@ -30,6 +30,12 @@ actions.emptyBasket = function () {
   };
 };
 
+actions.refillStock = function () {
+  return {
+    type: types.REFILL_STOCK
+  };
+};
+
 actions.checkout = function () {
   return {
     type: types.CHECKOUT

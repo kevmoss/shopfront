@@ -1,35 +1,37 @@
 import * as types from '../actions/types';
 
-var _ = require('underscore');
+var _ = require('lodash');
 
+var beginningState = {basket: [], items: [
+  {
+    name: "Glass",
+    price: "£2",
+    qty: 2
+  },
+  {
+    name: "Coasters",
+    price: "£2",
+    qty: 2
+  },
+  {
+    name: "Straws",
+    price: "£1",
+    qty: 5
+  },
+  {
+    name: "Cups",
+    price: "£2.50",
+    qty: 4
+  },
+  {
+    name: "Spoons",
+    price: "£1.50",
+    qty: 8
+  }
+]};
 var appReducer = function (initialState, action) {
-  initialState = initialState || {basket: [], items: [
-    {
-      name: "Glass",
-      price: "£2",
-      qty: 2
-    },
-    {
-      name: "Coasters",
-      price: "£2",
-      qty: 2
-    },
-    {
-      name: "Straws",
-      price: "£1",
-      qty: 5
-    },
-    {
-      name: "Cups",
-      price: "£2.50",
-      qty: 4
-    },
-    {
-      name: "Spoons",
-      price: "£1.50",
-      qty: 8
-    }
-  ]};
+  var newBeginningState = _.cloneDeep(beginningState);
+  initialState = initialState || newBeginningState;
 
   var newState;
 
@@ -49,6 +51,7 @@ var appReducer = function (initialState, action) {
           basket: initialState.basket.concat([action.item])
         });
       }
+      console.log(beginningState);
 
       break;
     case types.REMOVE_ITEM:
@@ -67,14 +70,14 @@ var appReducer = function (initialState, action) {
         itemToRemove.qty -= 1;
         newState = Object.assign({}, initialState, {
           basket: newBasket,
-          list: newList
+          items: newList
         })
       }
       else {
         newBasket.splice(itemIndex, 1);
         newState = Object.assign({}, initialState, {
           basket: newBasket,
-          list: newList
+          items: newList
         })
       }
 
@@ -87,10 +90,17 @@ var appReducer = function (initialState, action) {
 
       break;
     case types.EMPTY_BASKET:
+    var newItems = _.cloneDeep(beginningState.items);
       newState = Object.assign({}, initialState, {
-        basket: []
+        basket: [],
+        items: newItems
       })
       break;
+    // case types.REFILL_STOCK:
+    //   newState = Object.assign({}, initialState, {
+    //     items: originalStock
+    //   })
+    //   break;
     case types.UPDATE_STOCK:
       var newItems = initialState.items.slice();
       var subtractQuantity = action.item.qty - 1;
