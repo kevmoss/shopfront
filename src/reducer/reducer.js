@@ -29,6 +29,7 @@ var beginningState = {basket: [], items: [
     qty: 8
   }
 ]};
+
 var appReducer = function (initialState, action) {
   var newBeginningState = _.cloneDeep(beginningState);
   initialState = initialState || newBeginningState;
@@ -51,8 +52,6 @@ var appReducer = function (initialState, action) {
           basket: initialState.basket.concat([action.item])
         });
       }
-      console.log(beginningState);
-
       break;
     case types.REMOVE_ITEM:
       var newBasket = initialState.basket.slice();
@@ -106,7 +105,9 @@ var appReducer = function (initialState, action) {
       var subtractQuantity = action.item.qty - 1;
       for(var i = 0; i < newItems.length; i++) {
         if(newItems[i].name === action.item.name) {
+
           newItems[i].qty = subtractQuantity;
+          console.log(newItems[i].qty);
         }
       }
       newState = Object.assign({}, initialState, {

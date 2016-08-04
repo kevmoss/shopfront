@@ -1,39 +1,18 @@
 const React = require('react');
 const actions = require('../actions/actions');
+import Product from './Product';
+import {connect} from 'react-redux';
 
 var _ = require('underscore');
 
 var List = React.createClass({
 
   render: function () {
-    var items = this.props.store.getState().items;
-    var listNodes = items.map(function (item, index){
+    var listNodes = this.props.items.map(function (item, index){
       return (
-          <tr key={index}>
-            <td>{item.name}</td>
-            <td>£{(item.price / 100).toFixed(2) }</td>
-            <td>
-              {
-              (item.qty > 0)
-              ? item.qty
-              : <span className="out-of-stock">Out of stock</span>
-              }
-            </td>
-            <td className="is-icon">
-              {
-              (item.qty > 0)
-              ? <button className="button is-info is-outlined" href="#" onClick={this.handleAddItem.bind(this, item)}>
-                Add Item
-              </button>
-              : <button disabled className="button is-info is-outlined" href="#" onClick={this.handleAddItem.bind(this, item)}>
-              Add Item
-              </button>
-            }
-
-            </td>
-          </tr>
+          <Product key={index} {...item}/>
       )
-    }.bind(this));
+    });
 
     return (
       <div>
@@ -46,7 +25,7 @@ var List = React.createClass({
           <tr>
             <th>Product Name</th>
             <th>Price</th>
-            <th>Quantity</th>
+            <th>Quantitoy</th>
             <th>Add Item</th>
           </tr>
           </thead>
@@ -56,17 +35,13 @@ var List = React.createClass({
         </table>
       </div>
     );
-  },
-  handleAddItem: function (item, e) {
-    var newItem = Object.assign({}, item, {
-      qty: 1
-    });
-    this.props.store.dispatch(actions.addItem(newItem));
-
-    this.props.store.dispatch(actions.updateStock(item));
-
   }
-
 });
 
-module.exports = List;
+const mapStateToProps = function (state) {
+  return {
+    items: state.items
+  }
+}
+
+module.exports = connect(mapStateToProps)(List);

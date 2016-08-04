@@ -5,13 +5,9 @@ const List = require('./List');
 const Basket = require('./Basket');
 
 var Container = React.createClass({
-  componentDidMount: function () {
-    this.props.store.subscribe(function () {
-      this.forceUpdate();
-    }.bind(this))
-  },
+
   render: function () {
-    const {store} = this.props;
+
     return (
       <div>
         <div className="store-title">
@@ -19,10 +15,10 @@ var Container = React.createClass({
         </div>
         <div className="columns">
           <div className="column is-half list">
-            <List store={store} />
+            <List />
           </div>
           <div className="column is-half basket">
-            <Basket store={store} />
+            <Basket />
           </div>
         </div>
       </div>

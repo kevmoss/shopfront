@@ -1,17 +1,17 @@
 const React = require('react');
 const actions = require('../actions/actions');
+import {connect} from 'react-redux';
 
 var Basket = React.createClass({
   render: function () {
-    const {basket} = this.props.store.getState();
-    const itemNodes = basket.map(function (item, index) {
+    const itemNodes = this.props.basket.map(function (item, index) {
       return (
         <tr key={index}>
           <td>{item.name}</td>
           <td>£{(item.price / 100).toFixed(2) }</td>
           <td>{item.qty}</td>
           <td className="is-icon">
-            <button onClick={this.handleRemoveItem.bind(this,item)} className="button is-danger is-outlined" href="#" >
+            <button onClick={this.props.handleRemoveItem.bind(null, item)} className="button is-danger is-outlined" href="#" >
               Remove Item
             </button>
           </td>
@@ -37,20 +37,30 @@ var Basket = React.createClass({
             {itemNodes}
           </tbody>
         </table>
-        <button onClick={this.handleEmptyBasket} className="button is-danger " href="#" >
+        <button onClick={this.props.handleEmptyBasket} className="button is-danger " href="#" >
           Empty Basket
         </button>
       </div>
     );
-  },
-  handleRemoveItem: function (item, e) {
-      var removeItem = item;
-      this.props.store.dispatch(actions.removeItem(removeItem.name));
-  },
-  handleEmptyBasket: function () {
-    this.props.store.dispatch(actions.emptyBasket());
   }
 });
 
+const mapStateToProps = function (state) {
+  return {
+    basket: state.basket
+  }
+}
 
-module.exports = Basket;
+const mapDispatchToProps = function (dispatch) {
+  return {
+    handleRemoveItem: function (item) {
+      dispatch(actions.removeItem(item.name));
+    },
+    handleEmptyBasket: function () {
+      dispatch(actions.emptyBasket());
+    }
+  }
+}
+
+
+module.exports = connect(mapStateToProps, mapDispatchToProps)(Basket);
