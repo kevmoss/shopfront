@@ -49,5 +49,12 @@ actions.updateStock = function (item) {
   };
 };
 
+actions.updateBasketTotal = function (item) {
+  return {
+    type: types.BASKET_TOTAL,
+    item: item
+  }
+};
+
 
 module.exports = actions;

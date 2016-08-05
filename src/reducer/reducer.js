@@ -28,7 +28,7 @@ var beginningState = {basket: [], items: [
     price: 3000,
     qty: 8
   }
-]};
+], basketTotal: 0};
 
 var appReducer = function (initialState, action) {
   var newBeginningState = _.cloneDeep(beginningState);
@@ -112,6 +112,14 @@ var appReducer = function (initialState, action) {
       }
       newState = Object.assign({}, initialState, {
         items: newItems
+      })
+      break;
+    case types.BASKET_TOTAL:
+      var newBasketTotal = initialState.basketTotal;
+      newBasketTotal += action.item.price;
+
+      newState = Object.assign({}, initialState, {
+        basketTotal: newBasketTotal
       })
       break;
     default:

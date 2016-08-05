@@ -40,6 +40,7 @@ const mapDispatchToProps = function (dispatch) {
       });
       dispatch(actions.addItem(newItem));
       dispatch(actions.updateStock(item));
+      dispatch(actions.updateBasketTotal(item));
     }
   }
 }

@@ -37,6 +37,9 @@ var Basket = React.createClass({
             {itemNodes}
           </tbody>
         </table>
+        <div>
+          Total Price: £{(this.props.basketTotal / 100).toFixed(2)}
+          </div>
         <button onClick={this.props.handleEmptyBasket} className="button is-danger " href="#" >
           Empty Basket
         </button>
@@ -47,7 +50,8 @@ var Basket = React.createClass({
 
 const mapStateToProps = function (state) {
   return {
-    basket: state.basket
+    basket: state.basket,
+    basketTotal: state.basketTotal
   }
 }
 
