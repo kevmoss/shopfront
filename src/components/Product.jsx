@@ -3,11 +3,7 @@ const actions = require('../actions/actions');
 import {connect} from 'react-redux';
 
 var Product = React.createClass({
-  componentDidReceiveProps: function (nextProps) {
-    console.log(nextProps);
-  },
   render: function () {
-    console.log(this.props);
     return (
       <tr >
         <td>{this.props.name}</td>
