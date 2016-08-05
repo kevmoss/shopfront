@@ -58,7 +58,7 @@ const mapStateToProps = function (state) {
 const mapDispatchToProps = function (dispatch) {
   return {
     handleRemoveItem: function (item) {
-      dispatch(actions.removeItem(item.name));
+      dispatch(actions.removeItem(item.name, item.price));
     },
     handleEmptyBasket: function () {
       dispatch(actions.emptyBasket());

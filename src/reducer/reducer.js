@@ -58,25 +58,33 @@ var appReducer = function (initialState, action) {
       var newList = initialState.items.slice();
       var itemIndex;
       var itemToRemove;
+      var newBasketTotal = initialState.basketTotal;
+      console.log(newBasketTotal);
+
       // Removing Item from Basket
       for(var i = 0; i < newBasket.length; i++) {
         if(newBasket[i].name === action.item) {
           itemIndex = newBasket.indexOf(newBasket[i]);
           itemToRemove = newBasket[i];
+
         }
       }
       if(itemToRemove.qty > 1) {
         itemToRemove.qty -= 1;
+        newBasketTotal -= itemToRemove.price;
         newState = Object.assign({}, initialState, {
           basket: newBasket,
-          items: newList
+          items: newList,
+          basketTotal: newBasketTotal
         })
       }
       else {
         newBasket.splice(itemIndex, 1);
+        newBasketTotal -= itemToRemove.price;
         newState = Object.assign({}, initialState, {
           basket: newBasket,
-          items: newList
+          items: newList,
+          basketTotal: newBasketTotal
         })
       }
 
@@ -92,7 +100,8 @@ var appReducer = function (initialState, action) {
     var newItems = _.cloneDeep(beginningState.items);
       newState = Object.assign({}, initialState, {
         basket: [],
-        items: newItems
+        items: newItems,
+        basketTotal: 0
       })
       break;
     // case types.REFILL_STOCK:

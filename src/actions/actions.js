@@ -16,10 +16,11 @@ actions.addItem = function (item) {
   };
 };
 
-actions.removeItem = function (item) {
+actions.removeItem = function (item, price) {
   return {
     type: types.REMOVE_ITEM,
-    item: item
+    item: item,
+    price: price
   };
 };
 
