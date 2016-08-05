@@ -33,16 +33,20 @@ var Basket = React.createClass({
             <th>Remove Item</th>
           </tr>
           </thead>
+          <tfoot>
+          <tr>
+            <th>Total Price</th>
+            <th>£{(this.props.basketTotal / 100).toFixed(2)}</th>
+            <th></th>
+            <th><button onClick={this.props.handleEmptyBasket} className="button is-danger " href="#" >
+              Empty Basket
+            </button></th>
+          </tr>
+        </tfoot>
           <tbody>
             {itemNodes}
           </tbody>
         </table>
-        <div>
-          Total Price: £{(this.props.basketTotal / 100).toFixed(2)}
-          </div>
-        <button onClick={this.props.handleEmptyBasket} className="button is-danger " href="#" >
-          Empty Basket
-        </button>
       </div>
     );
   }

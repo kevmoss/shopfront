@@ -52,3 +52,9 @@ html {
 .basket-table {
   margin-top: 0px;
 }
+
+/* Table */
+.table tfoot th:first-child,
+.table tfoot th:nth-child(2) {
+  color: #000;
+}
