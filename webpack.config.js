@@ -27,9 +27,9 @@ module.exports = validate({
       }
     ]
   },
-  devServer: {
-    hot: true,
-    inline: true,
-    stats: 'errors-only'
-  }
+  // devServer: {
+  //   hot: true,
+  //   inline: true,
+  //   stats: 'errors-only'
+  // }
 });
