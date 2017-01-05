@@ -22,7 +22,7 @@ module.exports = validate({
         loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
-          presets: [ 'es2015', 'react', 'react-hmre' ]
+          presets: [ 'es2015', 'react', /*'react-hmre'*/ ]
         }
       }
     ]
